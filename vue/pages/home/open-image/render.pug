@@ -1,0 +1,4 @@
+.d-inline-block(v-if="id")
+  b-form-file(:id="id" placeholder="請選擇檔案..." @change="parseFile" accept=".jpg, .png" plain style="display:none;")
+  label.btn.btn-secondary.btn-sm.mb-0(:for="id")
+    b-icon-card-image

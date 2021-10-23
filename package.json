@@ -1,5 +1,5 @@
 {
-  "name": "webtool-template",
+  "name": "webgame-matching",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,17 +14,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/josudoey/template.git"
+    "url": "git+https://github.com/josudoey/webgame-matching.git"
   },
   "author": "Joey Fang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/josudoey/template/issues"
+    "url": "https://github.com/josudoey/webgame-matching/issues"
   },
-  "homepage": "https://github.com/josudoey/template#readme",
+  "homepage": "https://github.com/josudoey/webgame-matching#readme",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^8.0.1",
+    "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-node": "^11.1.0",

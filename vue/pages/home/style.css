@@ -1,0 +1,18 @@
+.game-card {
+    width: 200px;
+    height: 200px;
+}
+
+.flip-enter-active {
+    transition: all 0.5s ease;
+}
+
+.flip-leave-active {
+    display: none;
+}
+
+.flip-enter, .flip-leave {
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    opacity: 0;
+}
