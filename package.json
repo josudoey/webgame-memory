@@ -1,0 +1,53 @@
+{
+  "name": "webtool-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "webpack"
+  ],
+  "scripts": {
+    "dev": "cd webpack&&webpack serve --port 3000 --config ./config.dev.js",
+    "build": "NODE_ENV=production webpack --config webpack/config.js",
+    "audit": "npm audit fix",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josudoey/template.git"
+  },
+  "author": "Joey Fang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josudoey/template/issues"
+  },
+  "homepage": "https://github.com/josudoey/template#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "gh-pages": "^3.2.3"
+  },
+  "dependencies": {
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1",
+    "bootstrap-vue": "^2.21.2",
+    "css-loader": "^6.4.0",
+    "css-minimizer-webpack-plugin": "^3.1.1",
+    "html-loader": "^3.0.0",
+    "html-webpack-plugin": "^5.4.0",
+    "mini-css-extract-plugin": "^2.4.3",
+    "pug": "^3.0.2",
+    "pug-html-loader": "git+https://github.com/josudoey/pug-html-loader.git",
+    "pug-loader": "^2.4.0",
+    "terser-webpack-plugin": "^5.2.4",
+    "vue": "^2.6.14",
+    "vue-loader": "^15.9.8",
+    "vue-router": "^3.5.2",
+    "vue-template-compiler": "^2.6.14"
+  }
+}
