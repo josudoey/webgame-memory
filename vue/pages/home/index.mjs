@@ -100,6 +100,10 @@ export default {
       for (let i = 0; i < items.length; i++) {
         items[i].flipped = flipped
       }
+      Object.assign(this, {
+        first: null,
+        second: null
+      })
     },
     reset () {
       const items = this.items
