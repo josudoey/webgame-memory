@@ -4,14 +4,16 @@
       | 翻翻樂
       open-image.mb-0(@load="insert") 上傳
       template(v-if="items.length")
-        .btn.btn-primary.btn-sm(@click="reset") 重置
+        .btn.btn-primary.btn-sm(v-if="isAllFlipped()" @click="flipAll(false)") 蓋牌
+        .btn.btn-primary.btn-sm(v-if="!isAllFlipped()" @click="flipAll(true)") 亮牌
+        .btn.btn-warning.btn-sm(@click="reset") 重置
         b-form-input.my-auto.ml-1(v-model.number="size" type="range" min="100" max="400" step="5")
   .container-fluid.px-0.d-flex.flex-wrap.justify-content-around.align-items-center(style="min-height: calc(100vh - 60px)")
-    .game-card.mt-2(v-for="(item,index) in items" :key="item.no" :style="{width: size+'px',height: size+'px'}")
+    .game-card.mt-2(v-for="(item,index) in items" :key="item._uid" :style="{width: size+'px',height: size+'px'}")
       transition.d-relative(name="flip")
-        .card.pb-0.d-absolute.game-card.justify-content-around.align-items-center(v-if="item.flipped" @click="choice(item)" key="front" :style="{width: size + 'px',height: size + 'px'}")
+        .card.pb-0.d-absolute.game-card.justify-content-around.align-items-center(v-if="item.flipped" @click="choice(index)" key="front" :style="{width: size + 'px',height: size + 'px'}")
           img.mw-100.mh-100(:src='item.src')
-        .card.p-0.d-absolute.btn(v-else @click="choice(item)" :src='item.src' key="back")
+        .card.p-0.d-absolute.btn(v-else @click="choice(index)" :src='item.src' key="back")
           .w-100.game-card.jumbotron.text-center.mb-0.d-flex.justify-content-around.align-items-center.h1(:style="{width: size+'px',height: size+'px'}") {{item.no}}
 
 

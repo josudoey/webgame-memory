@@ -63,7 +63,9 @@ export default {
       }
       this.reset()
     },
-    choice (item) {
+    choice (index) {
+      const { items } = this
+      const item = items[index]
       if (this.second) {
         this.first.flipped = false
         this.second.flipped = false
@@ -89,15 +91,25 @@ export default {
       }
       this.first = null
     },
+    isAllFlipped () {
+      const { items } = this
+      return items.filter((item) => { return item.flipped }).length === items.length
+    },
+    flipAll (flipped) {
+      const { items } = this
+      for (let i = 0; i < items.length; i++) {
+        items[i].flipped = flipped
+      }
+    },
     reset () {
       const items = this.items
       const len = items.length
       for (let i = 0; i < len; i++) {
         for (let j = i + 1; j < len; j++) {
-          const r = parseInt(Math.random() * len)
-          const a = items[r]
-          items[r] = items[i]
-          items[i] = a
+          const randIndex = parseInt(Math.random() * len)
+          const swapIndex = items[randIndex]
+          items[randIndex] = items[i]
+          items[i] = swapIndex
         }
       }
 
