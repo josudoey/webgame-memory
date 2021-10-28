@@ -9,15 +9,21 @@ export default {
       id: ''
     }
   },
-  mounted: function () {
+  created () {
     this.id = `img-${this._uid}`
   },
+  mounted () {
+  },
   methods: {
-    parseFile: function (e) {
-      const self = this
+    change (e) {
       const input = e.srcElement
-      const file = input.files[0]
+      for (const file of input.files) {
+        this.readFile(file)
+      }
       input.value = ''
+    },
+    readFile: function (file) {
+      const self = this
       const reader = new window.FileReader()
       reader.addEventListener('load', function () {
         const url = reader.result
