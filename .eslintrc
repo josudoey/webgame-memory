@@ -1,7 +1,6 @@
 {
   "extends": "standard",
-  "parser": "babel-eslint",
   "parserOptions": {
-    "allowImportExportEverywhere": true
+    "parser": "@babel/eslint-parser"
   }
 }
