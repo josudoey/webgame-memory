@@ -1,21 +1,20 @@
-import { render, staticRenderFns } from './render.pug'
+import * as render from './render.pug'
 
 export default {
-  render,
-  staticRenderFns,
+  ...render,
   props: [],
   data: function () {
     return {
       id: ''
     }
   },
-  created () {
+  created() {
     this.id = `img-${this._uid}`
   },
-  mounted () {
+  mounted() {
   },
   methods: {
-    change (e) {
+    change(e) {
       const input = e.srcElement
       for (const file of input.files) {
         this.readFile(file)

@@ -1,16 +1,16 @@
-import { render, staticRenderFns } from './render.pug'
+import * as render from './render.pug'
+import Swal from 'sweetalert2'
+
 import OpenImage from './open-image/index.mjs'
 export default {
-  render,
-  staticRenderFns,
+  ...render,
   components: {
     OpenImage
   },
   data: () => {
     return {
       size: 200,
-      first: null,
-      second: null,
+      answerIndex: null,
       items: []
     }
   },
@@ -53,43 +53,53 @@ export default {
       if (!img) {
         return
       }
-      const id = this.items.length / 2
-      for (let i = 0; i < 2; i++) {
-        this.items.push({
-          id: id,
-          flipped: false,
-          src: img.src
-        })
-      }
+      const id = this.items.length
+      this.items.push({
+        id: id,
+        flipped: false,
+        src: img.src
+      })
       this.reset()
     },
-    choice (index) {
+    makeAnswer () {
       const { items } = this
-      const item = items[index]
-      if (this.second) {
-        this.first.flipped = false
-        this.second.flipped = false
-        Object.assign(this, {
-          first: null,
-          second: null
-        })
-        return
+      let item, answerIndex
+      while (!item || item.flipped) {
+        answerIndex = this.answerIndex = Math.floor(Math.random() * items.length)
+        item = items[answerIndex]
       }
-
+      Swal.fire({
+        customClass: {
+          htmlContainer: 'h-75',
+          image: ''
+        },
+        didOpen: () => {
+          Swal.getContainer().onclick = Swal.close
+        },
+        showConfirmButton: false,
+        title: '請尋找',
+        icon: 'question',
+        html: `<img src="${item.src}" class="h-100">`
+      })
+    },
+    choice (index) {
+      const { items, answerIndex } = this
+      const item = items[index]
       if (item.flipped) {
         return
       }
-      const { first } = this
       item.flipped = true
-      if (!first) {
-        this.first = item
+      if (index !== answerIndex) {
         return
       }
-      if (item.id !== first.id) {
-        this.second = item
-        return
-      }
-      this.first = null
+      Swal.fire({
+        title: '答對了!',
+        icon: 'success',
+        didOpen: () => {
+          Swal.getContainer().onclick = Swal.close
+        },
+        showConfirmButton: false
+      })
     },
     isAllFlipped () {
       const { items } = this
@@ -100,10 +110,6 @@ export default {
       for (let i = 0; i < items.length; i++) {
         items[i].flipped = flipped
       }
-      Object.assign(this, {
-        first: null,
-        second: null
-      })
     },
     reset () {
       const items = this.items

@@ -20,6 +20,7 @@ specifiers:
   popper.js: ^1.16.1
   pug: ^3.0.2
   pug-plain-loader: ^1.1.0
+  sweetalert2: ^11.4.10
   terser-webpack-plugin: ^5.2.4
   vue: ^2.6.14
   vue-loader: ^15.9.8
@@ -41,6 +42,7 @@ dependencies:
   popper.js: 1.16.1
   pug: 3.0.2
   pug-plain-loader: 1.1.0_pug@3.0.2
+  sweetalert2: 11.4.10
   terser-webpack-plugin: 5.3.1_webpack@5.72.0
   vue: 2.6.14
   vue-loader: 15.9.8_dd6eed2edbdf5ee85aee7553536cc635
@@ -4019,6 +4021,10 @@ packages:
       csso: 4.2.0
       picocolors: 1.0.0
       stable: 0.1.8
+    dev: false
+
+  /sweetalert2/11.4.10:
+    resolution: {integrity: sha512-Ms3mryLA/c5+llHNY0I9KXU8bv0N1a874gZr7xMPOiSnLD9veHZA92nZvJOkuN1hrdcR8kyj4IN8tBxlAIjVww==}
     dev: false
 
   /table/6.8.0:
