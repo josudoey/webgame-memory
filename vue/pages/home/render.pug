@@ -4,10 +4,10 @@
       .mr-1 瞬間記憶大挑戰
       open-image.mb-0(@load="insert") 上傳
       .d-inline-block(v-if="items.length")
-        .btn.btn-primary.btn-sm.my-auto(v-if="isAllFlipped()" @click="flipAll(false)") 蓋牌
-        .btn.btn-primary.btn-sm.my-auto(v-if="!isAllFlipped()" @click="flipAll(true)") 亮牌
-        .btn.btn-warning.btn-sm.my-auto(@click="reset") 重置
         b-form-input.my-auto.ml-1(v-model.number="size" type="range" min="100" max="400" step="5" style="max-width: 200px;")
+        .btn.btn-warning.btn-sm.my-auto(@click="reset") 重置
+        .btn.btn-primary.btn-sm.my-auto(v-if="!isAllFlipped()" @click="flipAll(true)") 亮牌
+        .btn.btn-primary.btn-sm.my-auto(v-if="isAllFlipped()" @click="flipAll(false)") 蓋牌
         .btn.btn-primary.btn-sm.my-auto(v-if="!isAllFlipped()" @click="makeAnswer") 出題
       .ml-auto
         .ml-0(v-if="items.length&&isAllFlipped()")
