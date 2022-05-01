@@ -1,7 +1,7 @@
-# webgame-matching
+# webgame-memory
 
 
 ### Demo
 
- [Link](https://josudoey.github.io/webgame-matching/)
+ [Link](https://josudoey.github.io/webgame-memory/)
 
