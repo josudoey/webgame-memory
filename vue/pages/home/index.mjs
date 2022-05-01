@@ -2,13 +2,17 @@ import * as render from './render.pug'
 import Swal from 'sweetalert2'
 
 import OpenImage from './open-image/index.mjs'
+import Interval from './interval/index.mjs'
 export default {
   ...render,
   components: {
+    Interval,
     OpenImage
   },
   data: () => {
     return {
+      startAt: 0,
+      timeAt: 0,
       size: 200,
       answerIndex: null,
       items: []
@@ -110,6 +114,19 @@ export default {
       for (let i = 0; i < items.length; i++) {
         items[i].flipped = flipped
       }
+
+      if (flipped) {
+        this.startTime()
+      }
+    },
+    startTime () {
+      this.startAt = this.timeAt = Date.now()
+    },
+    stopTime () {
+      this.startAt = null
+    },
+    refreshTime () {
+      this.timeAt = Date.now()
     },
     reset () {
       const items = this.items

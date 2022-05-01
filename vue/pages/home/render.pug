@@ -1,14 +1,20 @@
 .container-fluid.px-0(@paste.prevent="onPaste" @drop.prevent="onDrop" @dragover.prevent)
   nav.navbar.navbar-dark.bg-dark
-    .navbar-brand.d-flex
-      .mr-1 記憶大挑戰
+    .navbar-brand.d-flex.w-100
+      .mr-1 瞬間記憶大挑戰
       open-image.mb-0(@load="insert") 上傳
-      template(v-if="items.length")
+      .d-inline-block(v-if="items.length")
         .btn.btn-primary.btn-sm.my-auto(v-if="isAllFlipped()" @click="flipAll(false)") 蓋牌
         .btn.btn-primary.btn-sm.my-auto(v-if="!isAllFlipped()" @click="flipAll(true)") 亮牌
         .btn.btn-warning.btn-sm.my-auto(@click="reset") 重置
-        b-form-input.my-auto.ml-1(v-model.number="size" type="range" min="100" max="400" step="5")
+        b-form-input.my-auto.ml-1(v-model.number="size" type="range" min="100" max="400" step="5" style="max-width: 200px;")
         .btn.btn-primary.btn-sm.my-auto(v-if="!isAllFlipped()" @click="makeAnswer") 出題
+      .ml-auto
+        .ml-0(v-if="items.length&&isAllFlipped()")
+          interval(v-if="startAt" delay="1000" @elapsed="refreshTime" @stop="stopTime")
+            b-badge(pill variant="primary")
+              b-icon-clock
+            span {{Math.floor((timeAt-startAt)/1000)}}
   .container-fluid.px-0.d-flex.flex-wrap.justify-content-around.align-items-center(style="min-height: calc(100vh - 60px)")
     .game-card.mt-2(v-for="(item,index) in items" :key="item._uid" :style="{width: size+'px',height: size+'px'}")
       transition.d-relative(name="flip")
